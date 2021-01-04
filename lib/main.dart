@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './transaction.dart';
+import './widgets/user_transactions.dart';
+import 'models/transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,16 +16,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1', title: 'Shoes', amount: 99.99, date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'TV', amount: 1000.99, date: DateTime.now()),
-    Transaction(
-        id: 't3', title: 'Car', amount: 20000.99, date: DateTime.now()),
-    Transaction(
-        id: 't4', title: 'Ball', amount: 50, date: DateTime.now()),
-  ];
+  final List<Transaction> transactions = [];
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +26,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Flutter App'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text('Chart'),
-              elevation: 5,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('Chart'),
+                elevation: 5,
+              ),
             ),
-          ),
-          Column(children: transactions.map((tx) => Card(child: Text(tx.title),)).toList(),),
-        ],
+            UserTransactions(),
+          ],
+        ),
       ),
     );
   }
