@@ -46,6 +46,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  double getSizeList(){
+    return MediaQuery.of(context).size.height - 220;
+  }
+
   final List<Transaction> _userTransactions = [
     Transaction(id: 't1', title: 'Shoes', amount: 99.99, date: DateTime.now()),
     Transaction(id: 't2', title: 'TV', amount: 10.99, date: DateTime.now()),
@@ -62,6 +67,21 @@ class _MyHomePageState extends State<MyHomePage> {
     Transaction(
         id: 't5',
         title: 'Notebook',
+        amount: 120.01,
+        date: DateTime.now().subtract(Duration(days: 4))),
+    Transaction(
+        id: 't6',
+        title: 'Notebook2',
+        amount: 120.01,
+        date: DateTime.now().subtract(Duration(days: 4))),
+    Transaction(
+        id: 't7',
+        title: 'Notebook3',
+        amount: 120.01,
+        date: DateTime.now().subtract(Duration(days: 4))),
+    Transaction(
+        id: 't8',
+        title: 'Notebook4',
         amount: 120.01,
         date: DateTime.now().subtract(Duration(days: 4))),
   ];
@@ -126,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               child: Chart(_recentTransactions),
             ),
-            TransactionList(_userTransactions, _deleteTransaction),
+            TransactionList(_userTransactions, _deleteTransaction, getSizeList()),
           ],
         ),
       ),
