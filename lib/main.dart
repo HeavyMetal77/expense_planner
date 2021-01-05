@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
+              button: TextStyle(color: Colors.white),
             ),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -48,9 +49,21 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
     Transaction(id: 't1', title: 'Shoes', amount: 99.99, date: DateTime.now()),
     Transaction(id: 't2', title: 'TV', amount: 10.99, date: DateTime.now()),
-    Transaction(id: 't3', title: 'Car', amount: 20.99, date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(id: 't4', title: 'Ball', amount: 5000.01, date: DateTime.now().subtract(Duration(days: 2))),
-
+    Transaction(
+        id: 't3',
+        title: 'Car',
+        amount: 20.99,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't4',
+        title: 'Ball',
+        amount: 5.01,
+        date: DateTime.now().subtract(Duration(days: 2))),
+    Transaction(
+        id: 't5',
+        title: 'Notebook',
+        amount: 120.01,
+        date: DateTime.now().subtract(Duration(days: 4))),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
