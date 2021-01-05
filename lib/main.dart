@@ -1,8 +1,8 @@
-import 'package:expense_planner/widgets/chart.dart';
-import 'package:expense_planner/widgets/new_transaction.dart';
-import 'package:expense_planner/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 
+import './widgets/chart.dart';
+import './widgets/new_transaction.dart';
+import './widgets/transaction_list.dart';
 import 'models/transaction.dart';
 
 void main() => runApp(MyApp());
@@ -46,10 +46,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [
-    // Transaction(id: 't1', title: 'Shoes', amount: 99.99, date: DateTime.now()),
-    // Transaction(id: 't2', title: 'TV', amount: 10.99, date: DateTime.now()),
-    // Transaction(id: 't3', title: 'Car', amount: 20.99, date: DateTime.now()),
-    // Transaction(id: 't4', title: 'Ball', amount: 50.01, date: DateTime.now()),
+    Transaction(id: 't1', title: 'Shoes', amount: 99.99, date: DateTime.now()),
+    Transaction(id: 't2', title: 'TV', amount: 10.99, date: DateTime.now()),
+    Transaction(id: 't3', title: 'Car', amount: 20.99, date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(id: 't4', title: 'Ball', amount: 50.01, date: DateTime.now().subtract(Duration(days: 2))),
+
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {

@@ -9,7 +9,7 @@ class Chart extends StatelessWidget {
 
   Chart(this.recentTransaction);
 
-  List<Map<String, Object>> get groupingTrancactionValue {
+  List<Map<String, Object>> get groupedTrancactionValue {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
       double totalSum = 0.0;
@@ -28,7 +28,7 @@ class Chart extends StatelessWidget {
   }
 
   double get totalSpending {
-    return groupingTrancactionValue.fold(0.0,
+    return groupedTrancactionValue.fold(0.0,
         (previousValueSum, element) => previousValueSum + element['amount']);
   }
 
@@ -37,14 +37,23 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        children: groupingTrancactionValue.map((data) {
-          return ChartBar(
-            label: data['Day'],
-            spendingAmount: data['amount'],
-            spendingPercentageOfTotal: totalSpending == 0.0 ? 0:(data['amount'] as double)/totalSpending,
-          );
-        }).toList(),
+      child: Padding(
+        padding: EdgeInsets.all(5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTrancactionValue.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                label: data['Day'],
+                spendingAmount: data['amount'],
+                spendingPercentageOfTotal: totalSpending == 0.0
+                    ? 0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
