@@ -6,14 +6,12 @@ import '../models/transaction.dart';
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
   final Function _deleteTransaction;
-  final double sizeList;
 
-  TransactionList(this.transactions, this._deleteTransaction, this.sizeList);
+  TransactionList(this.transactions, this._deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: sizeList,
       child: transactions.isEmpty
           ? Column(
               children: [
