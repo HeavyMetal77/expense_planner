@@ -24,7 +24,7 @@ class TransactionList extends StatelessWidget {
                     height: 10,
                   ),
                   Container(
-                      height: constraint.maxHeight*0.6,
+                      height: constraint.maxHeight * 0.6,
                       child: Image.asset(
                         'assets/images/waiting.png',
                         fit: BoxFit.cover,
@@ -91,12 +91,20 @@ class TransactionList extends StatelessWidget {
                     subtitle: Text(
                       '${DateFormat.yMMMEd().format(transactions[index].date)}',
                     ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      color: Theme.of(context).errorColor,
-                      onPressed: () =>
-                          {_deleteTransaction(transactions[index].id)},
-                    ),
+                    trailing: MediaQuery.of(context).size.width > 500
+                        ? FlatButton.icon(
+                            icon: Icon(Icons.delete),
+                            label: Text('Delete'),
+                            textColor: Theme.of(context).errorColor,
+                            onPressed: () =>
+                                {_deleteTransaction(transactions[index].id)},
+                          )
+                        : IconButton(
+                            icon: Icon(Icons.delete),
+                            color: Theme.of(context).errorColor,
+                            onPressed: () =>
+                                {_deleteTransaction(transactions[index].id)},
+                          ),
                   ),
                 );
               },
